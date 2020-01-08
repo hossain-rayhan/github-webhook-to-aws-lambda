@@ -1,0 +1,3 @@
+aws-cdk.aws-lambda
+aws-cdk-aws-lambda-event-sources
+aws-cdk.core
