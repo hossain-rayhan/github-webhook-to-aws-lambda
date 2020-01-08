@@ -13,13 +13,17 @@ exports.handler = (event, context, callback) => {
     github_url = "Issue Comment: " + obj.action + "\n" + obj.comment.html_url;
   } else if (obj.issue && obj.issue.html_url) {
     github_url = obj.issue.html_url;
+  } else if (obj.pull_request && obj.comment && obj.comment.html_url) {
+    github_url = "Pull Request Comment: " + obj.action + "\n" + obj.comment.html_url;
+  } else if (obj.pull_request && obj.pull_request.html_url) {
+    github_url = obj.pull_request.html_url;
   }
 
-  
+
   const req = https.request({
     method: 'POST',
     hostname: 'hooks.chime.aws',
-    
+
     // Don't forget to update the path with you ChimeRoom webhook url.
     path: '/incomingwebhooks/YOUR_CHIME_ROOM_WEBHOOK_URL',
     headers: {
